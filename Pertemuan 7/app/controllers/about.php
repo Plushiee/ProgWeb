@@ -8,6 +8,5 @@
 			echo "about/page";
 		}
 		
-		
 	}
 ?>
