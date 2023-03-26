@@ -8,12 +8,12 @@ class App{
  		$url = $this -> parseUrl();
 		
 		if (isset($url)) {
-			if (file_exists('F:/xampp/htdocs/Pemrograman Web/Pertemuan 7/app/controllers/' . $url[0] . '.php')) {
+			if (file_exists('../app/controllers/' . $url[0] . '.php')) {
 				$this -> controller = $url[0];
 				unset($url[0]);
 			}
 		}
-		require_once('F:/xampp/htdocs/Pemrograman Web/Pertemuan 7/app/controllers/'. $this -> controller . '.php');
+		require_once('../app/controllers/'. $this -> controller . '.php');
 		$this -> controller = new $this -> controller;
 		
 		if(isset($url[1])){
