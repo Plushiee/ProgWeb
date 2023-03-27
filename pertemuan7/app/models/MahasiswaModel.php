@@ -17,5 +17,25 @@
 			$this -> db -> bind('id', $id);
 			return $this -> db -> single();
 		}
+		
+		public function tambahMahasiswa($data){
+			$query = "INSERT INTO mahasiswa VALUES ('', :nim, :nama, :kota )";
+			$this -> db -> query($query);
+			$this -> db -> bind('nim', $data['nim']);
+			$this -> db -> bind('nama', $data['nama']);
+			$this -> db -> bind('kota', $data['kota']);
+			
+			$this -> db -> execute();
+			return $this -> db -> rowCount();
+		}
+		
+		public function hapusMahasiswa($id){
+			$query = "DELETE FROM mahasiswa WHERE id = :id";
+			$this -> db -> query($query);
+			$this -> db -> bind('id', $id);
+			
+			$this -> db -> execute();
+			return $this -> db -> rowCount();
+		}
 	}
 ?>
