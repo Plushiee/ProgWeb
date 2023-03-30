@@ -39,7 +39,31 @@ class Mahasiswa extends Controller{
 			header('Location: '. BASEURL.'mahasiswa');
 			exit;
 		}
-	} 
+	}
+    
+    public function getUbah() {
+        echo json_encode($this -> model('MahasiswaModel') -> getMahasiswaById($_POST['id']));
+    }
+    
+    public function ubah() {
+        if($this -> model('MahasiswaModel') -> ubahMahasiswa($_POST) > 0) {
+			Flasher::setFlash('berhasil ', 'diubah', 'success');
+			header('Location: '. BASEURL.'mahasiswa');
+			exit;
+		} else {
+			Flasher::setFlash('gagal ', 'diubah', 'danger');
+			header('Location: '. BASEURL.'mahasiswa');
+			exit;
+		}
+    }
+    
+    public function cari() {
+        $data['judul'] = 'Daftar Mahasiswa';
+		$data['mhs'] = $this -> model('MahasiswaModel') -> cariDataMahasiswa();
+		$this -> view('templates/header', $data);
+		$this -> view('mahasiswa/index', $data);
+		$this -> view('templates/footer');
+    }
 }
 
 ?>
